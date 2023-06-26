@@ -169,10 +169,20 @@ def load_pokemon(pokemon_types):
 
 
 
-def count_pokemon_file_name(type, pokemon_name):
+def count_pokemon_file_name(pokemon_type, pokemon_name):
     pokemons_folder = "./Pokemon/dataset/"
-    type_folder = os.path.join(pokemons_folder,type)
-    pokemon_name = pokemon_name
-    file_count = sum(1 for file in os.listdir(type_folder) if file.startswith(pokemon_name + '_'))
+    type_folder = os.path.join(pokemons_folder, pokemon_type)
+    file_count = 0
+    digit = 1
+    
+    while True:
+        file_name = pokemon_name + '_' + str(digit) + '.jpg'
+        
+        if file_name in os.listdir(type_folder):
+            file_count += 1
+            digit += 1
+        else:
+            break
+    
     print('Number of files for the pokemon called ' + pokemon_name + ' : ' + str(file_count))
     return file_count
